@@ -1,5 +1,6 @@
 package com.imploded.javagameapp.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,8 +8,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.imploded.javagameapp.R;
+import com.imploded.javagameapp.interfaces.OnLoginCallback;
 import com.imploded.javagameapp.interfaces.OnUpdateUiCallback;
 import com.imploded.javagameapp.viewmodels.LoginViewModel;
 
@@ -67,7 +70,18 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.login();
+                viewModel.login(new OnLoginCallback() {
+                    @Override
+                    public void OnLogin(boolean isValid) {
+                        if (isValid) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this, "Failed to login!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }

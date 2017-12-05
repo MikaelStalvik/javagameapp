@@ -1,5 +1,6 @@
 package com.imploded.javagameapp.viewmodels;
 
+import com.imploded.javagameapp.interfaces.OnLoginCallback;
 import com.imploded.javagameapp.interfaces.OnUpdateUiCallback;
 import com.imploded.javagameapp.repository.LoginRepository;
 import com.imploded.javagameapp.utils.Utils;
@@ -37,8 +38,8 @@ public class LoginViewModel {
         _updateUiCallback = updateUiCallback;
     }
 
-    public void login() {
+    public void login(OnLoginCallback loginCallback) {
         LoginRepository repository = new LoginRepository();
-        repository.login(_userName, _password);
+        repository.login(_userName, _password, loginCallback);
     }
 }
