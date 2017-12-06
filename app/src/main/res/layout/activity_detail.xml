@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/padding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        tools:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:id="@+id/textViewDetailTitle" />
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_below="@id/textViewDetailTitle"
+        android:id="@+id/imageViewLarge" />
+    <TextView
+        tools:text="Publisher: XXX"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageViewLarge"
+        android:id="@+id/textViewPublisher"
+        android:layout_below="@id/textViewDetailTitle"
+        android:layout_marginTop="20dp" />
+    <TextView
+        tools:text="Released: 1990"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPublisher"
+        android:id="@+id/textViewReleaseYear"
+        android:layout_toRightOf="@id/imageViewLarge" />
+    <TextView
+        tools:text="Platform: Amiga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewReleaseYear"
+        android:id="@+id/textViewPlatform"
+        android:layout_toRightOf="@id/imageViewLarge" />
+    <TextView
+        tools:text="Long description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imageViewLarge"
+        android:id="@+id/textViewDescription" />
+</RelativeLayout>

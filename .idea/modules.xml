@@ -5,7 +5,6 @@
       <module fileurl="file://C:\dev\JavaGameApp\GameApp.iml" filepath="C:\dev\JavaGameApp\GameApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaGameApp.iml" filepath="$PROJECT_DIR$/JavaGameApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\dev\JavaGameApp\app\app.iml" filepath="C:\dev\JavaGameApp\app\app.iml" />
     </modules>
   </component>
 </project>
