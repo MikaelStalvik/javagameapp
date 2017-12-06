@@ -13,10 +13,15 @@ import java.util.concurrent.ExecutionException;
 public class MainViewModel {
 
     private List<Game> games;
-    public List<Game> get_Games() {
+    public List<Game> getGames() {
         return games;
     }
-    public void getGames() throws ExecutionException, InterruptedException {
+
+    public Game getGame(int position) {
+        return games.get(position);
+    }
+
+    public void getGamesFromServer() throws ExecutionException, InterruptedException {
         games = new MainRepository().getGames();
     }
 }
