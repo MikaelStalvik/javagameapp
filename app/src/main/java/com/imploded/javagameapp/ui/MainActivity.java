@@ -97,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFilter() {
-
+        Intent intent = new Intent(this, FilterActivity.class);
+        intent.putExtra(AppConstants.SortingId, viewModel.activeSorting);
+        startActivityForResult(intent, AppConstants.RequestFilterCode);
     }
 
     private void showSorting() {

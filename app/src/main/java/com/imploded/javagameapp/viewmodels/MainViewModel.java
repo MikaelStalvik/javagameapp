@@ -27,6 +27,8 @@ public class MainViewModel {
     }
 
     public String activeSorting = AppConstants.SortingNameId;
+    public String activeFilter = "";
+
     public boolean ascending = true;
 
     public Game getGame(int position) {
@@ -95,6 +97,14 @@ public class MainViewModel {
             }
         });
         return allGames;
+    }
+
+    private void updateFilter() {
+        if (activeFilter.isEmpty()) {
+            activeGames = allGames;
+            return;
+        }
+
     }
 
 }

@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.DetailActivity" />
-        <activity android:name=".ui.SortingActivity"></activity>
+        <activity android:name=".ui.SortingActivity" />
+        <activity android:name=".ui.FilterActivity"></activity>
     </application>
 
 </manifest>
