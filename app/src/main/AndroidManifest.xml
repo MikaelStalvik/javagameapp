@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.DetailActivity"></activity>
+        <activity android:name=".ui.DetailActivity" />
+        <activity android:name=".ui.SortingActivity"></activity>
     </application>
 
 </manifest>

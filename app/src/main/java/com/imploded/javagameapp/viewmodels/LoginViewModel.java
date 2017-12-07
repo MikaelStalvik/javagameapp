@@ -10,36 +10,37 @@ import com.imploded.javagameapp.utils.Utils;
  */
 
 public class LoginViewModel {
-    private OnUpdateUiCallback _updateUiCallback;
+    private OnUpdateUiCallback onUpdateUiCallback;
 
-    private String _userName;
-    public String get_userName() {
-        return _userName;
+    private String userName;
+    public String getUserName() {
+        return userName;
     }
-    public void set_userName(String value) {
-        _userName = value;
-        _updateUiCallback.updateUi(IsValid());
+    public void setUserName(String value) {
+        userName = value;
+        onUpdateUiCallback.updateUi(IsValid());
     }
 
-    private String _password;
-    public String get_password() {
-        return _password;
+    private String password;
+    public String getPassword() {
+        return password;
     }
-    public void set_password(String value) {
-        _password = value;
-        _updateUiCallback.updateUi(IsValid());
+    public void setPassword(String value) {
+        password = value;
+        onUpdateUiCallback.updateUi(IsValid());
     }
 
     private boolean IsValid() {
-        return Utils.IsNotEmpty(_userName) && Utils.IsNotEmpty(_password);
+        return Utils.IsNotEmpty(userName) && Utils.IsNotEmpty(password);
     }
 
     public LoginViewModel(OnUpdateUiCallback updateUiCallback) {
-        _updateUiCallback = updateUiCallback;
+        onUpdateUiCallback = updateUiCallback;
     }
 
     public void login(OnLoginCallback loginCallback) {
+        onUpdateUiCallback.updateUi(false);
         LoginRepository repository = new LoginRepository();
-        repository.login(_userName, _password, loginCallback);
+        repository.login(userName, password, loginCallback);
     }
 }

@@ -15,10 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by l19548726 on 2017-12-06.
- */
-
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
 
     public interface ClickListener {
@@ -60,18 +56,18 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public ImageView imageViewPicture;
-        public TextView textViewTitle;
-        public TextView textViewInfo;
-        public View layout;
+        ImageView imageViewPicture;
+        TextView textViewTitle;
+        TextView textViewInfo;
+        View layout;
 
         public ViewHolder(View v) {
             super(v);
             layout = v;
             v.setOnClickListener(this);
-            imageViewPicture = (ImageView)v.findViewById(R.id.imageViewPicture);
-            textViewInfo = (TextView)v.findViewById(R.id.textViewInfo);
-            textViewTitle = (TextView)v.findViewById(R.id.textViewTitle);
+            imageViewPicture = v.findViewById(R.id.imageViewPicture);
+            textViewInfo = v.findViewById(R.id.textViewInfo);
+            textViewTitle = v.findViewById(R.id.textViewTitle);
         }
 
         @Override

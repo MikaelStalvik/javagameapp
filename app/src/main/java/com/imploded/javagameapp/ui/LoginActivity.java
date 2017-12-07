@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                viewModel.set_userName(s.toString());
+                viewModel.setUserName(s.toString());
             }
         });
         usernameEditText.setText("mikael");
@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                viewModel.set_password(s.toString());
+                viewModel.setPassword(s.toString());
             }
         });
         passwordEditText.setText("12345");
@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(LoginActivity.this, "Failed to login!", Toast.LENGTH_SHORT).show();
+                            loginButton.setEnabled(true);
                         }
                     }
                 });
