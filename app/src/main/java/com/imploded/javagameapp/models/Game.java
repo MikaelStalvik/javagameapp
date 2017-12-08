@@ -2,9 +2,7 @@ package com.imploded.javagameapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by l19548726 on 2017-12-05.
- */
+import java.util.List;
 
 public class Game {
     @SerializedName("Id")
@@ -63,4 +61,8 @@ public class Game {
     public void setPicture(String data) {
         this.picture = data;
     }
+    @SerializedName("Platforms")
+    private List<String>  platforms;
+    public List<String> getPlatforms() {return this.platforms;}
+    public void setPlatforms(List<String> data) {this.platforms = data;}
 }

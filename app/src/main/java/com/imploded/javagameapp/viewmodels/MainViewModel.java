@@ -1,12 +1,15 @@
 package com.imploded.javagameapp.viewmodels;
 
+import com.imploded.javagameapp.models.FilterItem;
 import com.imploded.javagameapp.models.Game;
 import com.imploded.javagameapp.repository.MainRepository;
 import com.imploded.javagameapp.utils.AppConstants;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MainViewModel {
@@ -38,6 +41,24 @@ public class MainViewModel {
     public void getGamesFromServer() throws ExecutionException, InterruptedException {
         allGames = new MainRepository().getGames();
         activeGames = allGames;
+    }
+
+    public Map<String, Integer> getAllPlatforms() {
+        Map<String, Integer> result = new HashMap<String, Integer>();
+
+        for (Game game : allGames) {
+            for(String platform : game.getPlatforms()) {
+                if (result.containsKey(platform)) {
+                    int count = result.get(platform) + 1;
+                    result.put(platform, count);
+                }
+                else {
+                    result.put(platform, 1);
+                }
+            }
+        }
+
+        return result;
     }
 
     private void updateSorting(String newSort) {

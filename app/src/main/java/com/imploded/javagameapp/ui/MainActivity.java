@@ -10,12 +10,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.imploded.javagameapp.R;
 import com.imploded.javagameapp.adapters.GamesAdapter;
 import com.imploded.javagameapp.models.Game;
 import com.imploded.javagameapp.utils.AppConstants;
 import com.imploded.javagameapp.viewmodels.MainViewModel;
 
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -97,8 +99,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFilter() {
+        Map<String, Integer> allPlatforms = viewModel.getAllPlatforms();
+        Gson gson = new Gson();
+        String json = gson.toJson(viewModel.getAllPlatforms());
+
         Intent intent = new Intent(this, FilterActivity.class);
-        intent.putExtra(AppConstants.SortingId, viewModel.activeSorting);
+        intent.putExtra(AppConstants.ActiveFilterId, viewModel.activeSorting);
+        intent.putExtra(AppConstants.FilterPlatformId, json);
         startActivityForResult(intent, AppConstants.RequestFilterCode);
     }
 
