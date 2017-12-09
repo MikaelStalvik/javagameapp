@@ -5,10 +5,6 @@ import com.imploded.javagameapp.interfaces.OnUpdateUiCallback;
 import com.imploded.javagameapp.repository.LoginRepository;
 import com.imploded.javagameapp.utils.Utils;
 
-/**
- * Created by Mikael on 2017-12-04.
- */
-
 public class LoginViewModel {
     private OnUpdateUiCallback onUpdateUiCallback;
 

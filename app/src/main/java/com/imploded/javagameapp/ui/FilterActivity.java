@@ -29,7 +29,7 @@ public class FilterActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter adapter = new FilterAdapter(getApplicationContext(), viewModel.filterItems);
+        final RecyclerView.Adapter adapter = new FilterAdapter(getApplicationContext(), viewModel.filterItems);
         recyclerView.setAdapter(adapter);
 
         Button button = findViewById(R.id.filterButton);
@@ -37,6 +37,24 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 closeView();
+            }
+        });
+
+        button = findViewById(R.id.allButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.selectAll();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        button = findViewById(R.id.noneButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.selectNone();
+                adapter.notifyDataSetChanged();
             }
         });
     }

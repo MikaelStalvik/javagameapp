@@ -3,7 +3,6 @@ package com.imploded.javagameapp.viewmodels;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.imploded.javagameapp.models.FilterItem;
-import com.imploded.javagameapp.utils.AppConstants;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,9 +35,7 @@ public class FilterViewModel {
         Type platformType = new TypeToken<Map<String, Integer>>(){}.getType();
         Map<String, Integer> allPlatforms = gson.fromJson(allPlatformsJson, platformType);
         List<String> allPlatformNames = new ArrayList<>();
-        for(String key : allPlatforms.keySet()) {
-            allPlatformNames.add(key);
-        }
+        allPlatformNames.addAll(allPlatforms.keySet());
         List<String> activeFilters = getActiveFilters(activeFilterJson, allPlatformNames);
 
         filterItems = new ArrayList<>();
@@ -60,5 +57,16 @@ public class FilterViewModel {
     public String getFilterItemsAsJson() {
         Gson gson = new Gson();
         return gson.toJson(filterItems);
+    }
+
+    public void selectAll() {
+        for(FilterItem item : filterItems) {
+            item.checked = true;
+        }
+    }
+    public void selectNone() {
+        for(FilterItem item : filterItems) {
+            item.checked = false;
+        }
     }
 }

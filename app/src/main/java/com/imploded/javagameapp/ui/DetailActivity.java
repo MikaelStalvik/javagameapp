@@ -24,10 +24,11 @@ public class DetailActivity extends AppCompatActivity {
 
     private void updateUi() {
         Game game = viewModel.getGame();
+        setTitle(game.getName());
         titleTextView.setText(game.getName());
-        publisherTextView.setText(String.format("Publisher: %s", game.getPublisher()));
-        releaseyearTextView.setText(String.format("Release year: %s", game.getReleaseYear()));
-        platformTextView.setText(String.format("Platforms: %s", game.getPlatform()));
+        publisherTextView.setText(String.format("%s: %s", getString(R.string.publisher), game.getPublisher()));
+        releaseyearTextView.setText(String.format("%s: %s", getString(R.string.releaseYear), game.getReleaseYear()));
+        platformTextView.setText(String.format("%s: %s", getString(R.string.platforms), android.text.TextUtils.join(",", game.getPlatforms())));
         descriptionTextView.setText(game.getDescription());
         Picasso.with(DetailActivity.this).load(game.getPicture()).into(imageView);
     }

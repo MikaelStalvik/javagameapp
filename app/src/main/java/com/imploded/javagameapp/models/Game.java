@@ -29,14 +29,6 @@ public class Game {
     public void setName(String data) {
         this.name = data;
     }
-    @SerializedName("Platform")
-    private String platform;
-    public String getPlatform() {
-        return this.platform;
-    }
-    public void setPlatform(String data) {
-        this.platform = data;
-    }
     @SerializedName("Publisher")
     private String publisher;
     public String getPublisher() {

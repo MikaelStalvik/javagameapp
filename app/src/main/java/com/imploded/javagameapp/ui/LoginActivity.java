@@ -18,8 +18,6 @@ import com.imploded.javagameapp.viewmodels.LoginViewModel;
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
-    private EditText usernameEditText;
-    private EditText passwordEditText;
 
     private LoginViewModel viewModel = new LoginViewModel(new OnUpdateUiCallback() {
         @Override
@@ -33,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = findViewById(R.id.loginButton);
-        usernameEditText = findViewById(R.id.userNameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
+        EditText usernameEditText = findViewById(R.id.userNameEditText);
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
 
         usernameEditText.addTextChangedListener(new TextWatcher() {
             @Override

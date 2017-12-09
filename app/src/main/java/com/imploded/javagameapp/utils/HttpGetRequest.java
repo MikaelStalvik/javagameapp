@@ -9,10 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by l19548726 on 2017-12-05.
- */
-
 public class HttpGetRequest extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {

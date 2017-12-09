@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">JavaGameApp</string>
+    <string name="app_name">KotlinGameApp</string>
     <string name="login">Login</string>
+    <string name="failedToLogin">Failed to login</string>
+    <string name="publisher">Publisher</string>
+    <string name="releaseYear">Release year</string>
+    <string name="platforms">Platforms</string>
 </resources>

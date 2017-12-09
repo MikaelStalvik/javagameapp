@@ -5,10 +5,6 @@ import com.imploded.javagameapp.repository.DetailRepository;
 
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by l19548726 on 2017-12-06.
- */
-
 public class DetailViewModel {
 
     private Game game;
