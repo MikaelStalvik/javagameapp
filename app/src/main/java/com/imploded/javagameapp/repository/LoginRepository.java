@@ -15,10 +15,6 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Mikael on 2017-12-04.
- */
-
 public class LoginRepository {
 
     private static final String LOGIN_URL = "http://kotlinserver.azurewebsites.net/login";

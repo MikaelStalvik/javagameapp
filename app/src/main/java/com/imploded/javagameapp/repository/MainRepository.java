@@ -9,13 +9,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by l19548726 on 2017-12-05.
- */
-
 public class MainRepository {
 
-    private final String GET_GAMES_URL = "http://kotlinserver.azurewebsites.net/list";
+    private final String GET_GAMES_URL = "http://kotlinserver.azurewebsites.net/games";
 
     public List<Game> getGames() throws ExecutionException, InterruptedException {
         String json = new HttpGetRequest().execute(GET_GAMES_URL).get();
