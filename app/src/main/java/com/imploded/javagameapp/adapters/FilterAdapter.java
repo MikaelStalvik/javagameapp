@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.imploded.javagameapp.R;
@@ -38,6 +39,12 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHold
         holder.platformCheckBox.setChecked(item.checked);
         holder.platformCheckBox.setText(item.name);
         holder.countTextView.setText(String.valueOf(item.count));
+        holder.platformCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                item.checked = isChecked;
+            }
+        });
     }
 
     @Override
@@ -54,7 +61,6 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHold
         public FilterHolder(View v) {
             super(v);
             layout = v;
-            //v.setOnClickListener(this);
             platformCheckBox = v.findViewById(R.id.platformCheckBox);
             countTextView = v.findViewById(R.id.countTextView);
         }

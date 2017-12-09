@@ -78,15 +78,23 @@ public class MainActivity extends AppCompatActivity {
                     case AppConstants.RequestSortCode:
                         updateView(data.getStringExtra(AppConstants.SortingId));
                         break;
+                    case AppConstants.RequestFilterCode:
+                        updateViewWithFilterData(data.getStringExtra(AppConstants.FilterPlatformId));
+                        break;
                 }
             }
         }
     }
 
+    private void updateViewWithFilterData(String newFilter) {
+        viewModel.activeFilter = newFilter;
+        updateView(viewModel.activeSorting);
+    }
+
     private void updateView(String sorting) {
         viewModel.activeSorting = sorting;
         adapter = new GamesAdapter(getApplicationContext(), viewModel.getGamesForView());
-        ((GamesAdapter)adapter).setOnItemClickListener(new GamesAdapter.ClickListener() {
+        ((GamesAdapter) adapter).setOnItemClickListener(new GamesAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 Game game = viewModel.getGame(position);

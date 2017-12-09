@@ -1,10 +1,14 @@
 package com.imploded.javagameapp.viewmodels;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.imploded.javagameapp.models.FilterItem;
 import com.imploded.javagameapp.models.Game;
 import com.imploded.javagameapp.repository.MainRepository;
 import com.imploded.javagameapp.utils.AppConstants;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -18,6 +22,7 @@ public class MainViewModel {
     private List<Game> activeGames;
 
     public List<Game> getGamesForView() {
+        updateFilter();
         switch(activeSorting) {
             case AppConstants.SortingNameId:
                 return gamesSortedByName();
@@ -32,7 +37,7 @@ public class MainViewModel {
     public String activeSorting = AppConstants.SortingNameId;
     public String activeFilter = "";
 
-    public boolean ascending = true;
+    private boolean ascending = true;
 
     public Game getGame(int position) {
         return activeGames.get(position);
@@ -44,7 +49,7 @@ public class MainViewModel {
     }
 
     public Map<String, Integer> getAllPlatforms() {
-        Map<String, Integer> result = new HashMap<String, Integer>();
+        Map<String, Integer> result = new HashMap<>();
 
         for (Game game : allGames) {
             for(String platform : game.getPlatforms()) {
@@ -64,16 +69,12 @@ public class MainViewModel {
     private void updateSorting(String newSort) {
         String oldSort = activeSorting;
         activeSorting = newSort;
-        if (oldSort.equals(activeSorting)) {
-            ascending = !ascending;
-        }
-        else {
-            ascending = true;
-        }
+        ascending = !oldSort.equals(activeSorting) || !ascending;
     }
+
     private List<Game> gamesSortedByName() {
         updateSorting(AppConstants.SortingNameId);
-        Collections.sort(allGames,new Comparator<Game>() {
+        Collections.sort(activeGames,new Comparator<Game>() {
             @Override
             public int compare(Game a, Game b) {
                 if (ascending) {
@@ -85,11 +86,11 @@ public class MainViewModel {
                 }
             }
         });
-        return allGames;
+        return activeGames;
     }
     private List<Game> gamesSortedByPublisher() {
         updateSorting(AppConstants.SortingPublisherId);
-        Collections.sort(allGames,new Comparator<Game>() {
+        Collections.sort(activeGames,new Comparator<Game>() {
             @Override
             public int compare(Game a, Game b) {
                 if (ascending) {
@@ -101,11 +102,11 @@ public class MainViewModel {
                 }
             }
         });
-        return allGames;
+        return activeGames;
     }
     private List<Game> gamsSortedByReleaseYear() {
         updateSorting(AppConstants.SortingReleaseYearId);
-        Collections.sort(allGames,new Comparator<Game>() {
+        Collections.sort(activeGames,new Comparator<Game>() {
             @Override
             public int compare(Game a, Game b) {
                 if (ascending) {
@@ -117,7 +118,7 @@ public class MainViewModel {
                 }
             }
         });
-        return allGames;
+        return activeGames;
     }
 
     private void updateFilter() {
@@ -125,7 +126,27 @@ public class MainViewModel {
             activeGames = allGames;
             return;
         }
+        Gson gson = new Gson();
+        Type filterType = new TypeToken<List<FilterItem>>(){}.getType();
+        List<FilterItem> active = gson.fromJson(activeFilter, filterType);
+        List<String> selectedPlatforms = new ArrayList<>();
+        for(FilterItem item : active) {
+            if (item.checked) {
+                selectedPlatforms.add(item.name);
+            }
+        }
 
+        List<Game> result = new ArrayList<>();
+        for(Game game : allGames)
+        {
+            for(String platform : game.getPlatforms()) {
+                if (selectedPlatforms.contains(platform)) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        activeGames = result;
     }
 
 }
