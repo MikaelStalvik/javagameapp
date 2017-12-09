@@ -13,7 +13,7 @@ public class AppConstants {
     public final static String SortingReleaseYearId = "SortingReleaseYearId";
     public final static String SortingId = "SortingId";
 
-    public final static String FilterPlatformId = "FilterPlatformId";
+    public final static String FilterAllPlatformsId = "FilterAllPlatformsId";
     public final static String ActiveFilterId = "ActiveFilterId";
 
 }

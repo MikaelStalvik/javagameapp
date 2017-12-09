@@ -17,15 +17,12 @@ import com.imploded.javagameapp.models.Game;
 import com.imploded.javagameapp.utils.AppConstants;
 import com.imploded.javagameapp.viewmodels.MainViewModel;
 
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel = new MainViewModel();
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.game_list);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         try {
@@ -79,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         updateView(data.getStringExtra(AppConstants.SortingId));
                         break;
                     case AppConstants.RequestFilterCode:
-                        updateViewWithFilterData(data.getStringExtra(AppConstants.FilterPlatformId));
+                        updateViewWithFilterData(data.getStringExtra(AppConstants.ActiveFilterId));
                         break;
                 }
             }
@@ -93,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateView(String sorting) {
         viewModel.activeSorting = sorting;
-        adapter = new GamesAdapter(getApplicationContext(), viewModel.getGamesForView());
+        RecyclerView.Adapter adapter = new GamesAdapter(getApplicationContext(), viewModel.getGamesForView());
         ((GamesAdapter) adapter).setOnItemClickListener(new GamesAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
@@ -107,18 +104,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFilter() {
-        Map<String, Integer> allPlatforms = viewModel.getAllPlatforms();
         Gson gson = new Gson();
         String json = gson.toJson(viewModel.getAllPlatforms());
 
         Intent intent = new Intent(this, FilterActivity.class);
-        intent.putExtra(AppConstants.ActiveFilterId, viewModel.activeSorting);
-        intent.putExtra(AppConstants.FilterPlatformId, json);
+        intent.putExtra(AppConstants.ActiveFilterId, viewModel.activeFilter);
+        intent.putExtra(AppConstants.FilterAllPlatformsId, json);
         startActivityForResult(intent, AppConstants.RequestFilterCode);
     }
 
     private void showSorting() {
+        Gson gson = new Gson();
+        String json = gson.toJson(viewModel.getAllPlatforms());
+
         Intent intent = new Intent(this, SortingActivity.class);
+        intent.putExtra(AppConstants.FilterAllPlatformsId, json);
         intent.putExtra(AppConstants.SortingId, viewModel.activeSorting);
         startActivityForResult(intent, AppConstants.RequestSortCode);
     }
