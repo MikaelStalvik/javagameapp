@@ -29,7 +29,7 @@ public class MainViewModel {
             case AppConstants.SortingPublisherId:
                 return gamesSortedByPublisher();
             case AppConstants.SortingReleaseYearId:
-                return gamsSortedByReleaseYear();
+                return gamesSortedByReleaseYear();
         }
         return allGames;
     }
@@ -104,7 +104,7 @@ public class MainViewModel {
         });
         return activeGames;
     }
-    private List<Game> gamsSortedByReleaseYear() {
+    private List<Game> gamesSortedByReleaseYear() {
         updateSorting(AppConstants.SortingReleaseYearId);
         Collections.sort(activeGames,new Comparator<Game>() {
             @Override
